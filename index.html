@@ -1,1 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IJMAHS — Indian Journal of Medical &amp; Allied Health Sciences</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Indian Journal of Medical & Allied Health Sciences (IJMAHS) — an open-access, peer-reviewed journal covering research, curricula, and clinical training across the allied health professions.">
+<meta property="og:title" content="Indian Journal of Medical & Allied Health Sciences">
+<meta property="og:description" content="Open-access, peer-reviewed journal for allied health research, education, and clinical training.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<style>
+  :root {
+    --bg: #f5f7f4;
+    --surface: #ffffff;
+    --surface-2: #edf1ec;
+    --text: #17242a;
+    --text-muted: #52646a;
+    --border: #dbe3dc;
+    --accent: #0b6e62;
+    --accent-ink: #054e45;
+    --accent-soft: #e2f0ea;
+    --warm: #b8481b;
+    --warm-soft: #fbe8de;
+    --shadow: rgba(23,34,39,0.09);
+    --rule: #c7d2c9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1613;
+      --surface: #121e1a;
+      --surface-2: #172420;
+      --text: #e8eee9;
+      --text-muted: #9db2ab;
+      --border: #263630;
+      --accent: #52c0aa;
+      --accent-ink: #8fe0cc;
+      --accent-soft: #17302a;
+      --warm: #e07a4b;
+      --warm-soft: #33201a;
+      --shadow: rgba(0,0,0,0.45);
+      --rule: #2c3d36;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1613;
+    --surface: #121e1a;
+    --surface-2: #172420;
+    --text: #e8eee9;
+    --text-muted: #9db2ab;
+    --border: #263630;
+    --accent: #52c0aa;
+    --accent-ink: #8fe0cc;
+    --accent-soft: #17302a;
+    --warm: #e07a4b;
+    --warm-soft: #33201a;
+    --shadow: rgba(0,0,0,0.45);
+    --rule: #2c3d36;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: "Source Serif 4", Georgia, "Times New Roman", serif; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", monospace; }
+
+  h1, h2, h3, h4 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  a { color: var(--accent-ink); }
+  ::selection { background: var(--accent-soft); color: var(--accent-ink); }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .masthead-top .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; width: 100%; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 9px; border-radius: 100px;
+    background: var(--accent-soft); color: var(--accent-ink);
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.03em;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+
+  .masthead-main { padding: 30px 0 22px; }
+  .masthead-main .wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .journal-name {
+    font-size: clamp(26px, 4vw, 38px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+  .journal-tagline { color: var(--text-muted); margin-top: 6px; font-size: 15px; max-width: 46ch; }
+  .masthead-meta { text-align: right; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-muted); line-height: 1.9; }
+  .masthead-meta strong { color: var(--text); font-weight: 500; }
+
+  nav.toc {
+    border-top: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  nav.toc .wrap { display: flex; gap: 2px; padding: 0; }
+  nav.toc a {
+    white-space: nowrap;
+    display: inline-block;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+  nav.toc a:hover { color: var(--text); border-bottom-color: var(--rule); }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: 56px 0 52px; border-bottom: 1px solid var(--rule); }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(var(--rule) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: linear-gradient(180deg, black, transparent 72%);
+            mask-image: linear-gradient(180deg, black, transparent 72%);
+    opacity: 0.6;
+  }
+  .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px 48px; align-items: start; }
+  .hero-kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-ink); margin-bottom: 14px; display: block;
+  }
+  .hero h1 { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.2; }
+  .hero p.lede { margin-top: 16px; font-size: 17px; color: var(--text-muted); max-width: 56ch; }
+  .cta-row { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: 6px; font-size: 14.5px; font-weight: 600;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-ink); }
+  .btn-ghost { background: transparent; border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--text-muted); }
+
+  .scope-card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 22px 22px;
+  }
+  .scope-card h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; font-family: "IBM Plex Mono", monospace; color: var(--text-muted); margin-bottom: 12px; font-weight: 500; }
+  .scope-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .scope-list li { font-size: 14.5px; padding-left: 16px; position: relative; }
+  .scope-list li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+  /* Hero side: cover mockup + credibility strip */
+  .hero-side { display: grid; gap: 16px; }
+  .cover-card {
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--accent-ink), var(--accent));
+    color: #fff; border-radius: 12px; padding: 20px;
+    aspect-ratio: 3 / 4;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 16px 32px -12px var(--shadow);
+  }
+  .cover-card::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.16) 1px, transparent 1px);
+    background-size: 14px 14px;
+    -webkit-mask-image: linear-gradient(200deg, black, transparent 65%);
+            mask-image: linear-gradient(200deg, black, transparent 65%);
+  }
+  .cover-top { position: relative; display: flex; justify-content: space-between; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.85; }
+  .cover-mid { position: relative; }
+  .cover-eyebrow { display: block; font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.16em; opacity: 0.75; margin-bottom: 10px; }
+  .cover-mid h4 { font-size: clamp(19px, 2.6vw, 23px); line-height: 1.28; color: #fff; }
+  .cover-seal { position: relative; display: flex; align-items: center; gap: 8px; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.92; }
+  .cover-seal svg { flex: none; }
+
+  .credibility-strip { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; padding-top: 26px; border-top: 1px solid var(--border); }
+  .cred-item { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); padding: 7px 12px; border-radius: 100px; }
+  .cred-item svg { color: var(--accent); flex: none; }
+
+  /* Field card icons */
+  .icon-badge {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: var(--accent-soft); color: var(--accent-ink);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px; flex: none;
+  }
+
+  /* Indexing grid */
+  .index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .index-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .index-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .index-name { font-family: "Source Serif 4", serif; font-weight: 600; font-size: 15.5px; }
+  .index-card p { font-size: 13px; color: var(--text-muted); }
+  .chip { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.03em; padding: 3px 9px; border-radius: 100px; white-space: nowrap; }
+  .chip-active { background: var(--accent-soft); color: var(--accent-ink); }
+  .chip-target { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border); }
+  .index-note {
+    margin-top: 18px; display: flex; gap: 10px; align-items: flex-start;
+    background: var(--warm-soft); border: 1px solid var(--border); border-radius: 8px; padding: 13px 15px;
+    font-size: 13px; color: var(--text-muted);
+  }
+  .index-note svg { color: var(--warm); flex: none; margin-top: 2px; }
+
+  /* ---------- Section shell ---------- */
+  section.block { padding: 52px 0; border-bottom: 1px solid var(--rule); }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .section-num { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--text-muted); }
+  .section-head h2 { font-size: clamp(22px, 2.6vw, 27px); }
+  .section-intro { color: var(--text-muted); max-width: 68ch; margin-bottom: 28px; font-size: 15.5px; }
+
+  /* Aims & scope grid */
+  .field-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .field-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 16px;
+  }
+  .field-card .k { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--accent-ink); letter-spacing: 0.04em; }
+  .field-card p { margin-top: 6px; font-size: 14px; color: var(--text-muted); }
+
+  /* Table */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; background: var(--surface); }
+  th, td { text-align: left; padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--border); }
+  th {
+    font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--text-muted); background: var(--surface-2);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; text-align: right; }
+
+  /* Process steps */
+  .steps { display: grid; gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+  .step { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+  .step:last-child { border-bottom: none; }
+  .step-n { font-family: "IBM Plex Mono", monospace; font-size: 22px; color: var(--border); font-weight: 500; }
+  .step h4 { font-size: 15.5px; font-family: "IBM Plex Sans", sans-serif; font-weight: 600; }
+  .step p { margin-top: 4px; font-size: 14px; color: var(--text-muted); }
+
+  /* Guidelines two-col */
+  .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .guide-col h4 {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--accent-ink); font-weight: 500; margin-bottom: 12px;
+  }
+  .spec-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .spec-list li { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; border-bottom: 1px dashed var(--border); padding-bottom: 9px; }
+  .spec-list li span:first-child { color: var(--text-muted); }
+  .spec-list li span:last-child { text-align: right; font-weight: 500; }
+
+  /* APC / payment */
+  .apc-panel { display: grid; grid-template-columns: 1fr 300px; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); }
+  .apc-info { padding: 28px 28px; }
+  .apc-amount { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .apc-amount .cur { font-family: "IBM Plex Mono", monospace; font-size: 20px; color: var(--warm); }
+  .apc-amount .num { font-family: "IBM Plex Mono", monospace; font-size: 40px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .apc-amount .per { color: var(--text-muted); font-size: 14px; }
+  .apc-info p.desc { color: var(--text-muted); font-size: 14.5px; margin-top: 10px; max-width: 46ch; }
+  .apc-covers { margin-top: 18px; display: grid; gap: 7px; }
+  .apc-covers li { list-style: none; font-size: 13.5px; padding-left: 18px; position: relative; color: var(--text-muted); }
+  .apc-covers li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+  .waiver { margin-top: 18px; font-size: 12.5px; color: var(--text-muted); background: var(--surface-2); border: 1px solid var(--border); padding: 10px 12px; border-radius: 6px; }
+
+  .apc-pay {
+    background: var(--surface-2); border-left: 1px solid var(--border);
+    padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center;
+    gap: 10px;
+  }
+  .apc-pay img { width: 168px; height: 168px; border-radius: 6px; border: 1px solid var(--border); background: #fff; padding: 6px; }
+  .apc-pay .label { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
+  .upi-id { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; background: var(--surface); border: 1px solid var(--border); padding: 7px 10px; border-radius: 5px; word-break: break-all; }
+  .apc-pay .apps { font-size: 11.5px; color: var(--text-muted); }
+
+  /* Editorial board */
+  .board-card {
+    display: grid; grid-template-columns: 84px 1fr; gap: 18px;
+    border: 1px solid var(--border); border-radius: 10px; padding: 22px; background: var(--surface);
+  }
+  .avatar {
+    width: 84px; height: 84px; border-radius: 50%;
+    background: linear-gradient(155deg, var(--accent-soft), var(--warm-soft));
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Source Serif 4", serif; font-size: 26px; color: var(--accent-ink); font-weight: 600;
+    border: 1px solid var(--border);
+  }
+  .board-card h4 { font-size: 17px; }
+  .board-card .role { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--accent-ink); letter-spacing: 0.03em; margin-top: 3px; display: block; }
+  .board-card p.bio { margin-top: 10px; font-size: 14px; color: var(--text-muted); }
+  .board-open {
+    margin-top: 14px; border: 1px dashed var(--border); border-radius: 8px; padding: 16px; font-size: 13.5px; color: var(--text-muted);
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+
+  /* Submission CTA band */
+  .cta-band { background: var(--accent-ink); color: #fff; padding: 46px 0; }
+  .cta-band .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .cta-band h3 { color: #fff; font-size: 22px; }
+  .cta-band p { color: rgba(255,255,255,0.72); margin-top: 6px; font-size: 14.5px; max-width: 46ch; }
+  .cta-band .btn-primary { background: #fff; color: var(--accent-ink); }
+  .cta-band .btn-primary:hover { background: var(--accent-soft); }
+
+  /* Footer */
+  footer { padding: 34px 0 44px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .foot-col h5 { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 500; margin-bottom: 10px; }
+  .foot-col a, .foot-col p { display: block; font-size: 13.5px; color: var(--text-muted); text-decoration: none; margin-bottom: 6px; }
+  .foot-col a:hover { color: var(--accent-ink); }
+  .foot-bottom { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); font-family: "IBM Plex Mono", monospace; }
+
+  @media (max-width: 760px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .field-grid { grid-template-columns: 1fr 1fr; }
+    .guide-grid { grid-template-columns: 1fr; }
+    .apc-panel { grid-template-columns: 1fr; }
+    .apc-pay { border-left: none; border-top: 1px solid var(--border); }
+    .masthead-main .wrap { align-items: flex-start; }
+    .masthead-meta { text-align: left; }
+    .cover-card { aspect-ratio: auto; min-height: 220px; }
+    .index-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .field-grid { grid-template-columns: 1fr; }
+    .index-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-top">
+    <div class="wrap">
+      <span class="pill"><span class="dot"></span>Open Access · Peer Reviewed</span>
+      <span>Editorial Office: Mumbai, India</span>
+    </div>
+  </div>
+  <div class="masthead-main">
+    <div class="wrap">
+      <div>
+        <h1 class="journal-name">Indian Journal of Medical<br>&amp; Allied Health Sciences</h1>
+        <p class="journal-tagline">Research, curricula, and clinical training across the allied health professions.</p>
+      </div>
+      <div class="masthead-meta">
+        <div>ISSN: <strong>application in progress</strong></div>
+        <div>Frequency: <strong>Quarterly</strong></div>
+        <div>APC: <strong>₹3,000</strong></div>
+      </div>
+    </div>
+  </div>
+  <nav class="toc">
+    <div class="wrap">
+      <a href="#scope">Aims &amp; Scope</a>
+      <a href="#article-types">Article Types</a>
+      <a href="#review">Peer Review</a>
+      <a href="#guidelines">Author Guidelines</a>
+      <a href="#indexing">Indexing</a>
+      <a href="#apc">APC &amp; Payment</a>
+      <a href="#board">Editorial Board</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="hero-kicker">Call for Papers — Inaugural Volume</span>
+        <h1>Publishing rigorous research on the professions that keep clinical care running.</h1>
+        <p class="lede">IJMAHS is a new open-access journal dedicated to Operation Theatre Technology, Medical Laboratory Technology, Radiography &amp; Imaging, Physiotherapy, Anaesthesia Technology, Dialysis Technology, Nursing, and allied programs — covering original research, curriculum innovation, and competency-based clinical training in depth.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:zakirhussain090@gmail.com?subject=Manuscript%20Submission%20-%20IJMAHS">Submit a Manuscript</a>
+          <a class="btn btn-ghost" href="#apc">Pay Article Processing Charge</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="cover-card">
+          <div class="cover-top"><span>Vol. 1 · Issue 1</span><span>Forthcoming</span></div>
+          <div class="cover-mid">
+            <span class="cover-eyebrow">IJMAHS</span>
+            <h4 class="serif">Indian Journal of Medical &amp; Allied Health Sciences</h4>
+          </div>
+          <div class="cover-seal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span>Open Access · Peer Reviewed</span>
+          </div>
+        </div>
+        <div class="scope-card">
+          <h3>This Issue Is Open For</h3>
+          <ul class="scope-list">
+            <li>Original research articles</li>
+            <li>Review &amp; systematic review articles</li>
+            <li>Curriculum &amp; competency-based education studies</li>
+            <li>Case reports &amp; case series</li>
+            <li>Short communications</li>
+            <li>Letters to the Editor</li>
+          </ul>
+        </div>
+      </div>
+      <div class="credibility-strip">
+        <div class="cred-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Double-blind peer review</span></div>
+        <div class="cred-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>First decision in 4–6 weeks</span></div>
+        <div class="cred-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>Open access · CC BY-NC-ND</span></div>
+        <div class="cred-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>APC billed only on acceptance</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="scope">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">01</span><h2 class="serif">Aims &amp; Scope</h2></div>
+      <p class="section-intro">IJMAHS exists because allied health training rarely gets the depth of scholarly attention given to medicine and nursing alone. The journal covers the full breadth of allied health programs and courses — their science, their teaching, and their clinical practice.</p>
+      <div class="field-grid">
+        <div class="field-card">
+          <div class="icon-badge"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,12 8,12 10,6 14,18 16,12 21,12"/></svg></div>
+          <span class="k">DIAGNOSTIC &amp; THERAPEUTIC</span><p>Operation Theatre Technology, Anaesthesia Technology, Dialysis Technology, Radiography &amp; Imaging, Medical Laboratory Technology.</p>
+        </div>
+        <div class="field-card">
+          <div class="icon-badge"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7-4.3-9.3-8.4C1.2 8.9 2.6 5.6 6 5.1c2-.3 3.5.9 4 2 .5-1.1 2-2.3 4-2 3.4.5 4.8 3.8 3.3 7-2.3 4.1-9.3 8.4-9.3 8.4z"/></svg></div>
+          <span class="k">REHABILITATION &amp; CARE</span><p>Physiotherapy, Occupational Therapy, Nursing, Optometry, Audiology &amp; Speech-Language Pathology.</p>
+        </div>
+        <div class="field-card">
+          <div class="icon-badge"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="3" width="15" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4.5"/></svg></div>
+          <span class="k">EDUCATION &amp; ASSESSMENT</span><p>Competency-based curricula, clinical internship logbooks, OSCE and skills assessment, simulation-based training.</p>
+        </div>
+        <div class="field-card">
+          <div class="icon-badge"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <span class="k">CLINICAL PRACTICE</span><p>Infection control &amp; aseptic technique, patient safety, procedural protocols, allied health scope-of-practice studies.</p>
+        </div>
+        <div class="field-card">
+          <div class="icon-badge"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="12" width="3.2" height="8"/><rect x="10.4" y="7" width="3.2" height="13"/><rect x="16.8" y="4" width="3.2" height="16"/></svg></div>
+          <span class="k">HEALTH SYSTEMS</span><p>Workforce planning, allied health policy, quality improvement in diagnostic and therapy services.</p>
+        </div>
+        <div class="field-card">
+          <div class="icon-badge"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3 11.2c.6.5 1 1.2 1 2.3h4c0-1.1.4-1.8 1-2.3A6 6 0 0 0 12 3z"/></svg></div>
+          <span class="k">EDUCATIONAL INNOVATION</span><p>Teaching methods, MCQ item design, digital learning tools, textbook and courseware development.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="article-types">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">02</span><h2 class="serif">Article Types &amp; Word Limits</h2></div>
+      <p class="section-intro">Limits exclude the abstract, references, and tables/figures. Tables and figures are capped combined per article.</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Article type</th><th class="num">Word limit</th><th class="num">References</th><th class="num">Tables / figures</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Original research article</td><td class="num">3,000</td><td class="num">~40</td><td class="num">6</td></tr>
+            <tr><td>Review article</td><td class="num">3,500</td><td class="num">~90</td><td class="num">6</td></tr>
+            <tr><td>Curriculum &amp; education innovation</td><td class="num">3,000</td><td class="num">~30</td><td class="num">5</td></tr>
+            <tr><td>Short communication</td><td class="num">1,500</td><td class="num">~15</td><td class="num">2</td></tr>
+            <tr><td>Case report</td><td class="num">750</td><td class="num">~15</td><td class="num">4</td></tr>
+            <tr><td>Case series</td><td class="num">1,000</td><td class="num">~15</td><td class="num">4</td></tr>
+            <tr><td>Letter to the Editor</td><td class="num">750</td><td class="num">8</td><td class="num">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="review">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">03</span><h2 class="serif">Peer Review Process</h2></div>
+      <p class="section-intro">Every submission that passes editorial screening goes through double-blind peer review before a decision is issued.</p>
+      <div class="steps">
+        <div class="step"><span class="step-n">01</span><div><h4>Editorial screening</h4><p>The editorial office checks scope, format, and completeness — typically within 5–7 days of submission.</p></div></div>
+        <div class="step"><span class="step-n">02</span><div><h4>Reviewer assignment</h4><p>Two or more independent reviewers are assigned; author identity is withheld from reviewers and vice versa.</p></div></div>
+        <div class="step"><span class="step-n">03</span><div><h4>Review &amp; report</h4><p>Reviewers evaluate methodology, originality, and clinical or educational relevance, typically within 3–4 weeks.</p></div></div>
+        <div class="step"><span class="step-n">04</span><div><h4>Editorial decision</h4><p>Accept, minor revision, major revision, or reject — communicated with reviewer comments to the corresponding author.</p></div></div>
+        <div class="step"><span class="step-n">05</span><div><h4>Revision &amp; re-review</h4><p>Revised manuscripts are returned to original reviewers where feasible before a final decision.</p></div></div>
+        <div class="step"><span class="step-n">06</span><div><h4>Acceptance &amp; APC</h4><p>On acceptance, the corresponding author is invoiced the Article Processing Charge prior to publication.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="guidelines">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">04</span><h2 class="serif">Author Guidelines</h2></div>
+      <p class="section-intro">Manuscripts are prepared as a blinded article file (no author-identifying information) plus a separate title page.</p>
+      <div class="guide-grid">
+        <div class="guide-col">
+          <h4>Manuscript Formatting</h4>
+          <ul class="spec-list">
+            <li><span>Language</span><span>English</span></li>
+            <li><span>Font</span><span>Times New Roman, 12pt</span></li>
+            <li><span>Spacing</span><span>Double-spaced, numbered lines</span></li>
+            <li><span>Page size / margins</span><span>A4, 2.5cm all sides</span></li>
+            <li><span>Headings</span><span>Sentence case</span></li>
+            <li><span>File format</span><span>.doc / .docx (no .zip)</span></li>
+            <li><span>Reference style</span><span>Vancouver, numbered in order cited</span></li>
+          </ul>
+        </div>
+        <div class="guide-col">
+          <h4>Submission Requirements</h4>
+          <ul class="spec-list">
+            <li><span>Title page</span><span>Authors, affiliations, COI, funding</span></li>
+            <li><span>Blinded manuscript</span><span>Title through references only</span></li>
+            <li><span>Trial registration</span><span>CTRI / clinicaltrials.gov for trials</span></li>
+            <li><span>Generative AI use</span><span>Must be disclosed in Methods</span></li>
+            <li><span>Reporting guideline</span><span>STROBE / CONSORT / PRISMA / CARE as applicable</span></li>
+            <li><span>Copyright</span><span>CC BY-NC-ND 4.0 on acceptance</span></li>
+            <li><span>Reviewer suggestions</span><span>3 potential reviewers required</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="indexing">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">05</span><h2 class="serif">Indexing &amp; Discoverability</h2></div>
+      <p class="section-intro">IJMAHS is a new title, so this page states its indexing status exactly as it stands rather than claim coverage before it exists. A journal advertising immediate Scopus or PubMed listing on day one is one of the clearest predatory-journal warning signs — the databases below only evaluate a title after it has a real publication record.</p>
+      <div class="index-grid">
+        <div class="index-card">
+          <div class="index-card-top"><span class="index-name">DOAJ</span><span class="chip chip-active">Applying at launch</span></div>
+          <p>Directory of Open Access Journals — application submitted once Volume 1, Issue 1 is published.</p>
+        </div>
+        <div class="index-card">
+          <div class="index-card-top"><span class="index-name">Crossref</span><span class="chip chip-active">DOIs from Issue 1</span></div>
+          <p>Every accepted article is registered for a Crossref DOI starting with the inaugural issue.</p>
+        </div>
+        <div class="index-card">
+          <div class="index-card-top"><span class="index-name">Google Scholar</span><span class="chip chip-active">Site metadata live</span></div>
+          <p>The site carries standard scholarly page metadata; per-article citation tags ship with each published issue so Scholar can crawl and index them.</p>
+        </div>
+        <div class="index-card">
+          <div class="index-card-top"><span class="index-name">ROAD / ISSN Portal</span><span class="chip chip-active">Pending ISSN</span></div>
+          <p>Listed in the ISSN Portal's open-access directory as soon as the journal's ISSN is issued.</p>
+        </div>
+        <div class="index-card">
+          <div class="index-card-top"><span class="index-name">Scopus &amp; Web of Science</span><span class="chip chip-target">Long-term target</span></div>
+          <p>Both require 2–3 years of regular, quality-reviewed publishing before an application is even accepted.</p>
+        </div>
+        <div class="index-card">
+          <div class="index-card-top"><span class="index-name">PubMed / MEDLINE</span><span class="chip chip-target">Long-term target</span></div>
+          <p>NLM selection requires an established peer-reviewed publication history — pursued once IJMAHS has one.</p>
+        </div>
+      </div>
+      <div class="index-note">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5h.01"/></svg>
+        <span>Authors: verify any journal's indexing claims directly on the indexer's own site before submitting or paying — never take a journal's word alone, including ours.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="apc">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">06</span><h2 class="serif">Article Processing Charge</h2></div>
+      <p class="section-intro">A single, transparent fee is charged only on acceptance — nothing is charged to submit or to be reviewed.</p>
+      <div class="apc-panel">
+        <div class="apc-info">
+          <div class="apc-amount"><span class="cur">₹</span><span class="num">3,000</span><span class="per">/ accepted article</span></div>
+          <p class="desc">Covers editorial handling, peer review coordination, DOI-ready formatting, and open-access hosting so the article is free for anyone to read.</p>
+          <ul class="apc-covers">
+            <li>Editorial &amp; peer-review coordination</li>
+            <li>Copyediting &amp; layout</li>
+            <li>Permanent open-access hosting</li>
+            <li>No charge until manuscript is accepted</li>
+          </ul>
+          <div class="waiver">Fee waivers are considered case-by-case for authors without institutional funding — write to the editorial office before submission.</div>
+        </div>
+        <div class="apc-pay">
+          <span class="label">Scan to Pay via UPI</span>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnwAAAJ8CAIAAADrj+sBAAAQTklEQVR4nO3cwY0DWxVFURp1DiTAkPwjYUgCRFEM0WfQetK/7L6vvFYAdpX97K2anK/nef4CAPz//fW3LwAAPoXoAkBEdAEgIroAEBFdAIiILgBERBcAIqILABHRBYCI6AJARHQBICK6ABARXQCIiC4AREQXACKiCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAEREFwAi31Mv9Le//2Pqpa7z73/987cv4Q+mvoup+yqv5+S9ytc5Ub7XNm+99xt/g1O/i7ea+i486QJARHQBICK6ABARXQCIiC4AREQXACKiCwAR0QWAiOgCQER0ASAiugAQGdtePvHJG6rb3uutO6tTZ6z8fG58r/K3vG03eNu9b+N//meedAEgIroAEBFdAIiILgBERBcAIqILABHRBYCI6AJARHQBICK6ABARXQCIpNvLJ7btD0+58b62bahu26Gd+ny2bQJv22fethN+4zb1Njf+H07xpAsAEdEFgIjoAkBEdAEgIroAEBFdAIiILgBERBcAIqILABHRBYCI6AJARHQBICK6ABARXQCIiC4ARGwvL3Ljfmy5G/zWnd4p2/Z+T2w7qzeeDbvKd/GkCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAEREFwAiogsAEdEFgIjoAkBk3fbyJ++IbtuPLZUbzuU+84kbt45PbDuH2+795Hq2ndUpN17zFE+6ABARXQCIiC4AREQXACKiCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAETS7eVy+/RGU3utXueu1zmxbYP3xs/5ra9zojw//ud/5kkXACKiCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAEREFwAiogsAEdEFgMjY9nK5+/pW5T5quR974q2vM2XbrnL5Ojfadn6mvPW+Sp50ASAiugAQEV0AiIguAEREFwAiogsAEdEFgIjoAkBEdAEgIroAEBFdAIiMbS9P7fTeuNd6cl/lvZebyaXyvra9V+nG+yq3xKfuq/wN3vidTtn2X+dJFwAiogsAEdEFgIjoAkBEdAEgIroAEBFdAIiILgBERBcAIqILABHRBYDI2PbyiW3bpye2bZaWm8Dlnu2UG3dxS+V3um1vfJtP/u188u/Uky4AREQXACKiCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAEREFwAiogsAka/neX77Gv6g3Gfe9jontl3ztq3sE2/dlN62Q/vWc7jtmst9+G33Xpr6nD3pAkBEdAEgIroAEBFdAIiILgBERBcAIqILABHRBYCI6AJARHQBICK6ABD5Lt9s2ybntq3RE9s+w9KNn+Enn58bf8tTpt5r2/k5ceMOdsmTLgBERBcAIqILABHRBYCI6AJARHQBICK6ABARXQCIiC4AREQXACKiCwCRr+d5fvsa/qDcydy221nuo57Ytula7rVO2bZRvG1X+a2vc8I1/3nb/qNOeNIFgIjoAkBEdAEgIroAEBFdAIiILgBERBcAIqILABHRBYCI6AJARHQBILJue3nKjVuj23ZWt9l279uu58S23elSufd7Ytv+8Lb7OnHjNXvSBYCI6AJARHQBICK6ABARXQCIiC4AREQXACKiCwAR0QWAiOgCQER0ASCSbi9v2wi9UbkReuLG7dMT287Ytt3gE2/9Trf9R9lw/tm26/GkCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAERsLy+ybYN3yo33NbVVe+Mu7rat2hPbdsLLvegTN57DbdczxZMuAEREFwAiogsAEdEFgIjoAkBEdAEgIroAEBFdAIiILgBERBcAIqILAJF128s37vSe2HZfU7umb92q3eatO8bbfhel8nPe9rvYdjbK6/GkCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAEREFwAiogsAEdEFgIjoAkAk3V7etv9ZKu/9k/dsp7ZqbzS1H7ttV7l8rxs3wLd9X9ts+7170gWAiOgCQER0ASAiugAQEV0AiIguAEREFwAiogsAEdEFgIjoAkBEdAEg8vU8z29fAwB8BE+6ABARXQCIiC4AREQXACKiCwAR0QWAiOgCQER0ASAiugAQEV0AiIguAEREFwAiogsAEdEFgIjoAkBEdAEgIroAEBFdAIiILgBERBcAIqILABHRBYCI6AJA5D/Q7ceBtzoqTwAAAABJRU5ErkJggg==" alt="UPI QR code to pay Article Processing Charge to zakirhussain090@oksbi">
+          <span class="upi-id">zakirhussain090@oksbi</span>
+          <span class="apps">GPay · PhonePe · Paytm · any UPI app</span>
+          <span class="apps">After payment, email the screenshot with your manuscript ID to confirm.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="board">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">07</span><h2 class="serif">Editorial Board</h2></div>
+      <div class="board-card">
+        <div class="avatar">ZP</div>
+        <div>
+          <h4>Dr. Zakir Hussain Parray</h4>
+          <span class="role">Editor-in-Chief</span>
+          <p class="bio">Works in medical and healthcare education and assessment, evaluating students across clinical allied health programs and producing formal assessment reports for training centers.</p>
+        </div>
+      </div>
+      <div class="board-open">
+        <span>The editorial board is currently being formed. Reviewers and section editors in allied health disciplines are invited to apply.</span>
+        <a class="btn btn-ghost" href="mailto:zakirhussain090@gmail.com?subject=Editorial%20Board%20Interest%20-%20IJMAHS">Express Interest</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="wrap">
+      <div>
+        <h3 class="serif">Ready to submit your manuscript?</h3>
+        <p>Send your title page and blinded manuscript to the editorial office to begin screening.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:zakirhussain090@gmail.com?subject=Manuscript%20Submission%20-%20IJMAHS">Submit a Manuscript</a>
+    </div>
+  </div>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="foot-col">
+        <h5>Indian Journal of Medical &amp; Allied Health Sciences</h5>
+        <p style="color:var(--text);max-width:36ch;">An open-access journal for research, education, and clinical training in the allied health professions.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Editorial Office</h5>
+        <a href="mailto:zakirhussain090@gmail.com">zakirhussain090@gmail.com</a>
+        <p>Mumbai, India</p>
+      </div>
+      <div class="foot-col">
+        <h5>Quick Links</h5>
+        <a href="#article-types">Article Types &amp; Limits</a>
+        <a href="#guidelines">Author Guidelines</a>
+        <a href="#apc">Article Processing Charge</a>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      IJMAHS · ISSN application in progress · © 2026 Indian Journal of Medical &amp; Allied Health Sciences. Articles published under CC BY-NC-ND 4.0.
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>
